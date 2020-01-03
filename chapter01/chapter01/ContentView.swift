@@ -12,14 +12,15 @@ struct ContentView: View {
     
     @State private var selected = 0
     init() {
-        UITabBar.appearance().barTintColor = UIColor.black
+//        UITabBar.appearance().barTintColor = UIColor.black
     }
     
     var body: some View {
         TabView(selection: $selected) {
             HomeView().tabItem( {
                 self.selected == 0 ?
-                Image(systemName: TabConstants.TabImage.HomeFill).font(.title)
+                Image(systemName: TabConstants.TabImage.HomeFill)
+                    .font(.title)
                 : Image(systemName: TabConstants.TabImage.Home).font(.title)
                 
                 }).tag(0)
@@ -47,16 +48,22 @@ struct ContentView: View {
                 self.selected == 4 ?
                     Image(systemName: TabConstants.TabImage.MyFill).font(.title)
                     :
-                Image(systemName: TabConstants.TabImage.My).font(.title)
-                }).tag(4)
+                    Image(systemName: TabConstants.TabImage.My).font(.title)
+                }
+            ).tag(4)
         }
-        .font(.headline)
-        .accentColor(Color.white)
+//        .accentColor(Color.white)
+//        .frame(alignment: .center)
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        Group {
+            ContentView()
+                .previewDevice(PreviewDevice(stringLiteral: "iPhone 8"))
+            ContentView()
+                .previewDevice(PreviewDevice(stringLiteral: "iPhone Xs"))
+        }
     }
 }
