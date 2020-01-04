@@ -51,6 +51,11 @@ struct ContentView: View {
                     Image(systemName: TabConstants.TabImage.My).font(.title)
                 }
             ).tag(4)
+    func resizeTabImage(index: Int, selected: Bool) -> some View {
+        let tabName = TabName(rawValue: index)
+        return VStack {
+            (selected ? Image(systemName: tabName!.fillImageName) : Image(systemName: tabName!.imageName)).font(.some(Font.custom("Tab-Font", size: CGFloat(25))))
+            Text(tabName!.title)
         }
 //        .accentColor(Color.white)
 //        .frame(alignment: .center)
