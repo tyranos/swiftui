@@ -9,56 +9,38 @@
 import SwiftUI
 
 struct ContentView: View {
-    
+
     @State private var selected = 0
     init() {
 //        UITabBar.appearance().barTintColor = UIColor.black
     }
-    
+
     var body: some View {
         TabView(selection: $selected) {
-            HomeView().tabItem( {
-                self.selected == 0 ?
-                Image(systemName: TabConstants.TabImage.HomeFill)
-                    .font(.title)
-                : Image(systemName: TabConstants.TabImage.Home).font(.title)
-                
-                }).tag(0)
-            MyProjectView().tabItem( {
-                self.selected == 1 ?
-                    Image(systemName: TabConstants.TabImage.MyProjectFill).font(.title)
-                    :
+            HomeView().tabItem({
+                resizeTabImage(index: 0, selected: self.selected == 0)
+            }).tag(0)
+            MyProjectView().tabItem({
+                resizeTabImage(index: 1, selected: self.selected == 1)
+            }).tag(1)
+            SearchView().tabItem({
+                resizeTabImage(index: 2, selected: self.selected == 2)
+            }).tag(2)
+            NotificationView().tabItem({
+                resizeTabImage(index: 3, selected: self.selected == 3)
+            }).tag(3)
+            MyView().tabItem({
+                resizeTabImage(index: 4, selected: self.selected == 4)
+            }).tag(4)
+        }
+    }
 
-                Image(systemName: TabConstants.TabImage.MyProject).font(.title)
-                }).tag(1)
-            SearchView().tabItem( {
-                self.selected == 2 ?
-                    Image(systemName: TabConstants.TabImage.SearchFill).font(.title)
-                    :
-                Image(systemName: TabConstants.TabImage.Search).font(.title)
-                }).tag(2)
-            NotificationView().tabItem( {
-                self.selected == 3 ?
-                    Image(systemName: TabConstants.TabImage.NotificationFill).font(.title)
-                    :
-                Image(systemName: TabConstants.TabImage.Notification).font(.title)
-                }).tag(3)
-
-            MyView().tabItem( {
-                self.selected == 4 ?
-                    Image(systemName: TabConstants.TabImage.MyFill).font(.title)
-                    :
-                    Image(systemName: TabConstants.TabImage.My).font(.title)
-                }
-            ).tag(4)
     func resizeTabImage(index: Int, selected: Bool) -> some View {
         let tabName = TabName(rawValue: index)
         return VStack {
             (selected ? Image(systemName: tabName!.fillImageName) : Image(systemName: tabName!.imageName)).font(.some(Font.custom("Tab-Font", size: CGFloat(25))))
             Text(tabName!.title)
         }
-//        .accentColor(Color.white)
-//        .frame(alignment: .center)
     }
 }
 

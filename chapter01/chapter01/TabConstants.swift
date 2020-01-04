@@ -8,17 +8,38 @@
 
 import Foundation
 
-struct TabConstants {
-    struct TabImage {
-        static let Home = "house"
-        static let HomeFill = "house.fill"
-        static let MyProject = "star"
-                static let MyProjectFill = "star.fill"
-        static let Search = "magnifyingglass"
-        static let SearchFill = "magnifyingglass"
-        static let Notification = "bell"
-        static let NotificationFill = "bell.fill"
-        static let My = "person"
-        static let MyFill = "person.fill"
-    }    
+enum TabName: Int {
+
+    case home = 0
+    case project = 1
+    case search = 2
+    case notification = 3
+    case my = 4
+
+    var imageName: String {
+        switch self {
+        case .home: return "house"
+        case .project: return "star"
+        case .search: return "magnifyingglass"
+        case .notification: return "bell"
+        case .my: return "person"
+        }
+    }
+
+    var fillImageName: String {
+        switch self {
+        case .search: return "\(imageName)"
+        default: return "\(imageName).fill"
+        }
+    }
+
+    var title: String {
+        switch self {
+        case .home: return "Home"
+        case .project: return "Project"
+        case .search: return "Search"
+        case .notification: return "Notification"
+        case .my: return "My"
+        }
+    }
 }
