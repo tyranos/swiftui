@@ -10,7 +10,19 @@ import SwiftUI
 
 struct MyView: View {
     var body: some View {
-        Text("My Setting")
+        VStack(alignment: .leading) {
+            HStack {
+                Image(systemName: "pencil.circle")
+                Spacer()
+                VStack {
+                    Text("Nickname")
+                    Text("Project : 2")
+                }
+                Spacer()
+                Text("Setting Link")
+            }
+            Spacer()
+        }
     }
 }
 
