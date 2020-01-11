@@ -9,25 +9,33 @@
 import SwiftUI
 
 struct MyView: View {
+    var profileImage: String = ""
+    let settingImage = #imageLiteral(resourceName: "setting")
+
+    init(profileImage: String) {
+        self.profileImage = profileImage
+    }
+
     var body: some View {
         VStack(alignment: .leading) {
-            HStack {
-                Image(systemName: "pencil.circle")
-                Spacer()
-                VStack {
-                    Text("Nickname")
-                    Text("Project : 2")
+            HStack(alignment: .top) {
+                ProfileImageView(imageUrl: profileImage).padding(.trailing, 11)
+                VStack(alignment: .leading) {
+                    Text("Nickname").modifier(ProfileNameFont()).padding(.top, 10)
+                    Text("Project : 2").font(.system(size: 12, weight: .regular))
                 }
                 Spacer()
-                Text("Setting Link")
-            }
+                Image(uiImage: settingImage).frame(width: 12, height: 12.5).shadow(radius: 4.0, y: 2.0).padding(.top, 5).padding( .trailing, 6)
+            }.padding(.top, 15).padding(.leading, 14).padding(.trailing, 14)
             Spacer()
         }
     }
 }
 
-struct MyView_Previews: PreviewProvider {
-    static var previews: some View {
-        MyView()
+#if DEBUG
+    struct MyView_Previews: PreviewProvider {
+        static var previews: some View {
+            MyView(profileImage: "")
+        }
     }
-}
+#endif

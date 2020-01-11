@@ -11,6 +11,8 @@ import SwiftUI
 struct ContentView: View {
 
     @State private var selected = 0
+    private var profileImage = "https://k.kakaocdn.net/dn/qNbB1/btqxN5O3SYP/fx2Zy42QbIen4aVQew9Wt0/profile_110x110c.jpg?dconv-h=200&dconv-s=SC&dconv-w=200"
+    
     init() {
 //        UITabBar.appearance().barTintColor = UIColor.black
     }
@@ -29,7 +31,7 @@ struct ContentView: View {
             NotificationView().tabItem({
                 resizeTabImage(index: 3, selected: self.selected == 3)
             }).tag(3)
-            MyView().tabItem({
+            MyView(profileImage: self.profileImage).tabItem({
                 resizeTabImage(index: 4, selected: self.selected == 4)
             }).tag(4)
         }
